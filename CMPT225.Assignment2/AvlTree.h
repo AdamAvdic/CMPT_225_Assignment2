@@ -48,7 +48,7 @@ class AvlTree
      * Deep copy.
      */
     AvlTree & operator=( const AvlTree & rhs )
-    {
+    {   
         AvlTree copy = rhs;
         std::swap( *this, copy );
         return *this;

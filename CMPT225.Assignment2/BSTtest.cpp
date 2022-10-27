@@ -39,5 +39,7 @@ int main( )
 */
     cout << "End of BSTtest" << endl;
 
+  //  t.height();
+
     return 0;
 }

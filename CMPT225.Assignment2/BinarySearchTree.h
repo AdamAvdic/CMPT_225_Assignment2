@@ -145,7 +145,7 @@ class BinarySearchTree
 
     /**
      * Insert x into the tree; duplicates are ignored.
-     */
+    */
     void insert( const Comparable & x )
     {
         insert( x, root );
@@ -166,8 +166,24 @@ class BinarySearchTree
     {
         remove( x, root );
     }
-
-
+    //*************************************************************************************
+    //PUBLIC CODE 
+    void displayLinks(ostream & out = cout) const{
+        if(isEmpty())
+        out<<"EMPTY TREE" <<endl;
+        else
+            displayLinks(root,0,out);
+    }
+    int height(){
+        if (isEmpty()){
+            cout<<"empty tree"<<endl;
+        }
+        return height(root)-1;
+    }
+    int depth(const Comparable & x){
+        return depth(x,root);
+        }
+    
   private:
     struct BinaryNode
     {
@@ -359,26 +375,55 @@ class BinarySearchTree
         else
             return new BinaryNode{ t->element, clone( t->left ), clone( t->right ) };
     }
+    
     //ASSIGNMENT 2:
 
     //Your task for this part is to add a function void displayLinks(), which is similar to displayTree, 
     //but in addition to the keys prints out the address of each node and the values of its two pointers to its children. 
     //To show what the output of your function should look like, a typescript of the output is provided below. 
     //(You should be able to verify that the addresses of the children of a node are indeed the same as the values of the child pointers of the node.) 
-    void displayLinks(){
-return 0;
+    void displayLinks(BinaryNode *t, int depth, ostream &out)const{
+        const int SHIFT= 4;
+        if(t!=NULL){
+            for(int i = 0; i < SHIFT*depth ; i++)
+            {out << " ";
+            }
+            out<<t->element<<"@ "<< t << " " << "L:" << t->left << " " << "R:" << t->right << endl;
+            displayLinks( t->left, depth+1, out );
+            displayLinks( t->right, depth+1, out );
+        }
     }
     // This function returns the height of the tree.  You must compute the height recursively.
-    int height(){
-        return 0;
+    int height(BinaryNode *t){
+    if(t==nullptr){
+        return 0;}
+        else{
+          int  rightnode = height(t->right);
+          int  leftnode = height(t->left);
+          int rootmax = max(rightnode,leftnode)+1;
+          return rootmax;
+        } 
     }
-
-
     // This function returns the depth of x in the tree, if x is in the tree, and the depth of the search for x otherwise.  
     //You must compute this value recursively and efficiently.
-    int depth(Comparable & x){
-        return 0;
-    }
+    int depth(const Comparable & x,BinaryNode *t)const{
+    
+      int right = -1;
+      int left = -1;
+      if( t != nullptr )
+        left = 1 + depth(x,t->left);
+        right = 1 + depth(x,t->right);
+      
+      if(right == x) 
+        return right;
+      
+      if(left == x)
+        return left;}
+      
+    
+    
+    
+    
 };
 
 #endif

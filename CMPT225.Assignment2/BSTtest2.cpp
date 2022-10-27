@@ -12,6 +12,7 @@ int main( )
     const int CAP  = 19;
     int i;
     int key ;
+    int x = 2;
 
     cout << "Start of BSTtest" << endl;
 
@@ -23,11 +24,13 @@ int main( )
 
     if( NUMS < 40 ){
         cout << "Keys:" << endl ;
-        t.printTree( );
+        t.printTree();
         cout << "Tree:" << endl ;
         t.displayTree(); 
         cout << "Links:" << endl ;
         t.displayLinks(); 
+        cout<<"height: "<<t.height()<<endl;
+        cout<<"depth: "<<t.depth(x)<<endl;
     }
 
 /*
@@ -40,6 +43,5 @@ int main( )
     t2 = t;
 */
     cout << "End of BSTtest" << endl;
-
     return 0;
 }
