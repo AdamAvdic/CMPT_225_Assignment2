@@ -181,7 +181,8 @@ class BinarySearchTree
         return height(root)-1;
     }
     int depth(const Comparable & x){
-        return depth(x,root);
+int level = 0;
+        return depth(x,root,level);
         }
     
   private:
@@ -190,6 +191,7 @@ class BinarySearchTree
         Comparable element;
         BinaryNode *left;
         BinaryNode *right;
+	//BinaryNode *level;
 
         BinaryNode( const Comparable & theElement, BinaryNode *lt, BinaryNode *rt )
           : element{ theElement }, left{ lt }, right{ rt } { }
@@ -406,23 +408,17 @@ class BinarySearchTree
     }
     // This function returns the depth of x in the tree, if x is in the tree, and the depth of the search for x otherwise.  
     //You must compute this value recursively and efficiently.
-    int depth(const Comparable & x,BinaryNode *t)const{
-    
-      int right = -1;
-      int left = -1;
-      if( t != nullptr )
-        left = 1 + depth(x,t->left);
-        right = 1 + depth(x,t->right);
-      
-      if(right == x) 
-        return right;
-      
-      if(left == x)
-        return left;}
-      
-    
-    
-    
+    int depth(const Comparable & x,BinaryNode *t,int level){
+	if(t == nullptr){
+		return 0;}
+	if(t->element == x){
+		return level;}
+	int leftlevel = depth(x,t->left,level+1);
+	if(leftlevel != 0){
+	return leftlevel;}
+	int rightlevel = depth(x,t->right,level+1);
+	return leftlevel;   
+}
     
 };
 

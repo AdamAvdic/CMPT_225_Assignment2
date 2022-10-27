@@ -12,7 +12,7 @@ int main( )
     const int CAP  = 19;
     int i;
     int key ;
-    int x = 2;
+    int x =2;
 
     cout << "Start of BSTtest" << endl;
 
